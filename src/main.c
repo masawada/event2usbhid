@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <linux/input.h>
 
 // プロトタイプ宣言
 void keyboard();
@@ -40,11 +41,15 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
+	ioctl(0, EVIOCGRAB, 1);
+
 	if (keyboard_flag == 0) {
 		keyboard();
 	} else {
 		mouse();
 	}
+
+	ioctl(0, EVIOCGRAB, 0);
 
 	return 0;
 }
