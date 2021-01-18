@@ -138,6 +138,14 @@ void mouse() {
 				}
 			}
 
+			if(event.code == BTN_SIDE) {
+				if(event.value == 1) {
+					buttons |= 8;
+				} else {
+					buttons &= ~8;
+				}
+			}
+
 			// 現状を送信する
 			sendMouseReport(buttons, x, y, wheel);
 
